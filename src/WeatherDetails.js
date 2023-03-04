@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
+import mist from "./Mist.jpg"
+import rain from "./Rain5.jpg"
+import sunny from './Sunny.jpg'
+import haze from "./foggy.webp"
+import clouds from "./clouds.jpg"
 
 function WeatherDetails({
     temp,
@@ -18,23 +23,49 @@ function WeatherDetails({
         if (weatherType) {
           switch (weatherType) {
             case "Clouds":
-              setWeatherState("wi-day-cloudy cloudcss");
+              document.body.style.backgroundImage = `url('${clouds}')`;
               break;
             case "Haze":
-              setWeatherState("wi-fog fogcss");
+              document.body.style.backgroundImage = `url('${haze}')`;
               break;
             case "Clear":
-              setWeatherState("wi-day-sunny sunnycss");
+              document.body.style.backgroundImage = `url('${sunny}')`;
               break;
             case "Mist":
-              setWeatherState("wi-dust dustcss");
+              document.body.style.backgroundImage = `url('${mist}')`;
               break;
             case "Rain":
-              setWeatherState("wi-day-rain raincss");
+              document.body.style.backgroundImage = `url('${rain}')`;
               break;
     
             default:
-              setWeatherState("wi-day-sunny sunnycss");
+              document.body.style.backgroundImage = `url('${sunny}')`;
+              break;
+          }
+        }
+      }, [weatherType]);
+
+      useEffect(() => {
+        if (weatherType) {
+          switch (weatherType) {
+            case "Clouds":
+              setWeatherState("wi-day-cloudy");
+              break;
+            case "Haze":
+              setWeatherState("wi-fog");
+              break;
+            case "Clear":
+              setWeatherState("wi-day-sunny");
+              break;
+            case "Mist":
+              setWeatherState("wi-dust");
+              break;
+            case "Rain":
+              setWeatherState("wi-day-rain");
+              break;
+    
+            default:
+              setWeatherState("wi-day-sunny");
               break;
           }
         }
